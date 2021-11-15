@@ -1,80 +1,58 @@
 <%- include ../partials/header.ejs %>
+    <%- include ../partials/nav.ejs %>
 
-<div class="container">
-    <div class="row">
-        <div class="offset-md-3 col-md-6">
-            <h1><%= title %></h1>
+        <div class="container">
+            <div class="row flex flex-col justify-center items-center text-center py-6">
+                <div class="offset-md-3 col-md-6">
+                    <h1 class="text-2xl font-bold p-4">
+                        <%= title %>
+                    </h1>
 
-            <form class="form" method="POST">
-                <div class="form-group">
-                    <input type="hidden"
-                        name="id"
-                        value="<%= book._id %>"
-                    >
-                    <label for="bookTextField">Title</label>
-                    <input type="text" class="form-control"
-                        id="bookTextField"
-                        placeholder="Enter the Title"
-                        name="Title" 
-                        value="<%= book.Title %>"
-                        required>
-                </div>
-                <br />
-                <div class="form-group">
-                    <label for="bookTextField">Description</label>
-                    <input type="text" class="form-control"
-                        id="bookTextField"
-                        placeholder="Enter the Description"
-                        name="Description" 
-                        value="<%= book.Description %>"
-                        required>
-                </div>
-                <br />
-                <div class="form-group">
-                    <label for="statusTextField">Price</label>
-                    <input type="number" class="form-control"
-                    id="statusTextField"
-                    placeholder="00"
-                    name="Price" 
-                    value="<%= book.Price %>"
-                    >
-                </div>
-                <br />
-                <div class="form-group">
-                    <label for="bookTextField">Author</label>
-                    <input type="text" class="form-control"
-                        id="bookTextField"
-                        placeholder="Enter the Author"
-                        name="Author" 
-                        value="<%= book.Author %>"
-                        required>
-                </div>
-                <br />
-                <div class="form-group">
-                    <label for="bookTextField">Genre</label>
-                    <input type="text" class="form-control"
-                        id="bookTextField"
-                        placeholder="Enter the Genre"
-                        name="Genre" 
-                        value="<%= book.Genre %>"
-                        required>
-                </div>
-                <br />
+                    <form class="form" method="POST" class="flex flex-col justify-center text-center">
+                        <div class="form-group space-x-2 flex justify-between items-center">
+                            <input type="hidden" name="id" value="<%= blog._id %>">
+                            <label for="blogTitleField">Title</label>
+                            <input type="text" class="form-control p-1 bg-gray-100 outline-none" id="blogTitleField"
+                                placeholder="Enter the Title" name="Title" value="<%= blog.Title %>" required>
+                        </div>
+                        <br />
+                        <div class="form-group space-x-2 flex justify-between items-center">
+                            <label for="blogContentField">Content</label>
+                            <textarea name="Content" id="blogContentField" rows="4" cols="22"
+                                class="form-control p-1 bg-gray-100 outline-none" placeholder="Enter the Content"
+                                required><%= blog.Content %></textarea>
+                        </div>
+                        <br />
+                        <div class="form-group space-x-2 flex justify-between items-center">
+                            <label for="blogTagsField">Tags</label>
+                            <input type="text" class="form-control p-1 bg-gray-100 outline-none" id="blogTagsField"
+                                placeholder="Enter the tags" name="Tags" value="<%= blog.Tags %>">
+                        </div>
+                        <br />
+                        <div class="form-group space-x-2 flex justify-between items-center">
+                            <label for="blogAuthorField">Author</label>
+                            <input type="text" class="form-control p-1 bg-gray-100 outline-none" id="blogAuthorField"
+                                placeholder="Enter the Author" name="Author" value="<%= blog.Author %>" required>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="flex justify-center space-x-4">
+                            <button class="btn btn-primary p-2 bg-blue-100" type="submit">
+                                <i class="fas fa-edit"></i>
+                                Submit
+                            </button>
 
-                <button class="btn btn-primary" type="submit">
-                    <i class="fas fa-edit"></i> 
-                    Submit
-                </button>
-                
-                <a href="/book/list" class="btn btn-warning">
-                    <i class="fas fa-undo"></i> 
-                    Cancel
-                </a>
+                            <a href="/" class="btn btn-warning  p-2 bg-blue-100">
+                                <i class="fas fa-undo"></i>
+                                Cancel
+                            </a>
+                        </div>
 
-            </form>
+                    </form>
+                </div>
+
+            </div>
         </div>
 
-    </div>
-</div>
-
-<%- include ../partials/footer.ejs %></div>
+        </div>
+        <%- include ../partials/footer.ejs %>

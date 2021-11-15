@@ -8,7 +8,7 @@ module.exports.displayAddPage = (req, res, next) => {
 module.exports.processAddPage = (req, res, next) => {
 	const newBlog = new Blog(req.body);
 	Blog.create(newBlog);
-	res.redirect("/blog/list");
+	res.redirect("/");
 };
 
 module.exports.displayEditPage = (req, res, next) => {
@@ -36,17 +36,17 @@ module.exports.processEditPage = (req, res, next) => {
 			return console.error(err);
 		}
 	});
-	res.redirect("/blog/list");
+	res.redirect("/");
 };
 
-module.exports.performDelete = (req, res, next) => {
+module.exports.processDelete = (req, res, next) => {
 	let id = req.params.id;
 
 	Blog.remove({ _id: ObjectID(id) }, (err) => {
 		if (err) {
 			return console.error(err);
 		} else {
-			res.redirect("/blog/list");
+			res.redirect("/");
 		}
 	});
 };

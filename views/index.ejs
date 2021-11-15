@@ -21,7 +21,7 @@
               <th class="text-center p-4">Content</th>
               <th class="text-center p-4">Tags</th>
               <th class="text-center p-4">Author</th>
-              <th class="text-center p-4" colspan="2">Actions</th>
+              <th class="text-center p-4" colspan="4">Actions</th>
             </tr>
 
             <% for(let count=0; count < blogs.length; count++) { %>
@@ -39,13 +39,13 @@
                   <%= blogs[count].Author %>
                 </td>
 
-                <td class="text-center">
+                <td class="pl-4 text-center">
                   <a href="/blog/edit/<%= blogs[count]._id %>" class="btn btn-primary btn-sm">
-                    <i class="fas fa-pencil-alt"></i></a>
+                    <i class="fas fa-pencil-alt underline">Edit</i></a>
                 </td>
-                <td class="text-center">
+                <td class="pl-4 text-center">
                   <a href="/blog/delete/<%= blogs[count]._id %>" class="btn btn-danger btn-sm">
-                    <i class="fas fa-trash-alt"></i></a>
+                    <i class="fas fa-trash-alt underline">Delete</i></a>
                 </td>
               </tr>
               <% } %>
