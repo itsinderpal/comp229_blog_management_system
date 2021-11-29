@@ -67,7 +67,7 @@ app.use(passport.session());
 // passport user configuration
 
 // create a User Model Instance
-let userModel = require("../models/user");
+let userModel = require("./models/user");
 let User = userModel.User;
 
 // implement a User Authentication Strategy
@@ -79,7 +79,7 @@ passport.deserializeUser(User.deserializeUser());
 
 let jwtOptions = {};
 jwtOptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
-jwtOptions.secretOrKey = DB.Secret;
+jwtOptions.secretOrKey = dbURI.Secret;
 
 let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
 	User.findById(jwt_payload.id)
