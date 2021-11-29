@@ -1,0 +1,58 @@
+<% include partials/header.ejs %>
+    <% include partials/nav.ejs %>
+
+        <main class="container">
+            <div class="row text-center">
+                <h1 class="text-xl font-bold">
+                    <%= title %>
+                </h1>
+                <br>
+                <div>
+                    <a href="/blog/add" class="p-2 bg-blue-100 btn btn-primary align-self-end" role="button">
+                        <i class="fas fa-plus-circle"></i>
+                        Add a new Blog
+                    </a>
+                </div>
+
+                <div class="table-responsive flex justify-center items-center pt-8">
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr>
+                            <th class="text-center p-4">Title</th>
+                            <th class="text-center p-4">Content</th>
+                            <th class="text-center p-4">Tags</th>
+                            <th class="text-center p-4">Author</th>
+                            <th class="text-center p-4" colspan="4">Actions</th>
+                        </tr>
+
+                        <% for(let count=0; count < blogs.length; count++) { %>
+                            <tr>
+                                <td class="text-center">
+                                    <%= blogs[count].Title %>
+                                </td>
+                                <td class="text-center">
+                                    <%= blogs[count].Content %>
+                                </td>
+                                <td class="text-center">
+                                    <%= blogs[count].Tags %>
+                                </td>
+                                <td class="text-center">
+                                    <%= blogs[count].Author %>
+                                </td>
+
+                                <td class="pl-4 text-center">
+                                    <a href="/blog/edit/<%= blogs[count]._id %>" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-pencil-alt underline">Edit</i></a>
+                                </td>
+                                <td class="pl-4 text-center">
+                                    <a href="/blog/delete/<%= blogs[count]._id %>" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash-alt underline">Delete</i></a>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+
+        <% include partials/footer.ejs %>
