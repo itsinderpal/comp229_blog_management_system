@@ -1,9 +1,14 @@
-// require modules for the User Model
 let mongoose = require("mongoose");
 let passportLocalMongoose = require("passport-local-mongoose");
 
 let User = mongoose.Schema(
 	{
+		name: {
+			type: String,
+			default: "",
+			trim: true,
+			required: "Name is required",
+		},
 		username: {
 			type: String,
 			default: "",
@@ -23,12 +28,6 @@ let User = mongoose.Schema(
 			trim: true,
 			required: "email address is required",
 		},
-		displayName: {
-			type: String,
-			default: "",
-			trim: true,
-			required: "Display Name is required",
-		},
 		created: {
 			type: Date,
 			default: Date.now,
@@ -42,8 +41,6 @@ let User = mongoose.Schema(
 		collection: "users",
 	}
 );
-
-// configure options for User Model
 
 let options = { missingPasswordError: "Wrong / Missing Password" };
 
