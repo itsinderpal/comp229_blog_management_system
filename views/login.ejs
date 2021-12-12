@@ -6,51 +6,41 @@
                 <h1 class="text-xl font-bold">
                     <%= title %>
                 </h1>
-                <br>
-                <div>
-                    <a href="/blog/add" class="p-2 bg-blue-100 btn btn-primary align-self-end" role="button">
-                        <i class="fas fa-plus-circle"></i>
-                        Add a new Blog
-                    </a>
-                </div>
 
-                <div class="table-responsive flex justify-center items-center pt-8">
-                    <table class="table table-bordered table-striped table-hover">
-                        <tr>
-                            <th class="text-center p-4">Title</th>
-                            <th class="text-center p-4">Content</th>
-                            <th class="text-center p-4">Tags</th>
-                            <th class="text-center p-4">Author</th>
-                            <th class="text-center p-4" colspan="4">Actions</th>
-                        </tr>
+                <% if (error) { %>
+                    <div class="my-4 mx-auto w-48 flex justify-center items-center text-center bg-red-100">
+                        <h3 class="py-2 text-l font-semibold">
+                            <%= error %>
+                        </h3>
+                    </div>
+                    <% } %>
 
-                        <% for(let count=0; count < blogs.length; count++) { %>
-                            <tr>
-                                <td class="text-center">
-                                    <%= blogs[count].Title %>
-                                </td>
-                                <td class="text-center">
-                                    <%= blogs[count].Content %>
-                                </td>
-                                <td class="text-center">
-                                    <%= blogs[count].Tags %>
-                                </td>
-                                <td class="text-center">
-                                    <%= blogs[count].Author %>
-                                </td>
+                        <div class="table-responsive flex justify-center items-center pt-8">
+                            <form class="form" method="POST" class="flex flex-col justify-center text-center">
+                                <div class="form-group space-x-2 flex justify-between items-center">
+                                    <input type="hidden" name="id" value="<%= user._id %>">
+                                    <label for="usernameField">Username</label>
+                                    <input type="text" class="form-control p-1 bg-gray-100 outline-none"
+                                        id="usernameField" placeholder="Enter your username" name="username"
+                                        value="<%= user.username %>" required>
+                                </div>
+                                <br />
+                                <div class="form-group space-x-2 flex justify-between items-center">
+                                    <label for="passwordField">Password</label>
+                                    <input type="password" class="form-control p-1 bg-gray-100 outline-none"
+                                        id="passwordField" placeholder="Enter your password" name="password"
+                                        value="<%= user.password %>" required>
+                                </div>
+                                <br />
+                                <div class="flex justify-center space-x-4">
+                                    <button class="btn btn-primary p-2 bg-blue-100" type="submit">
+                                        <i class="fas fa-edit"></i>
+                                        Login
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
 
-                                <td class="pl-4 text-center">
-                                    <a href="/blog/edit/<%= blogs[count]._id %>" class="btn btn-primary btn-sm">
-                                        <i class="fas fa-pencil-alt underline">Edit</i></a>
-                                </td>
-                                <td class="pl-4 text-center">
-                                    <a href="/blog/delete/<%= blogs[count]._id %>" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash-alt underline">Delete</i></a>
-                                </td>
-                            </tr>
-                            <% } %>
-                    </table>
-                </div>
             </div>
         </main>
 
