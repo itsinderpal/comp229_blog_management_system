@@ -1,29 +1,30 @@
 require('dotenv').config();
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
 const passport = require('passport');
 
-var app = express();
+const app = express();
 
 require('./config/passport');
 app.use(cookieParser());
 app.use(cors());
 
 // routes
-var indexRouter = require('./routes/index');
-var blogRouter = require('./routes/blog');
-var loginRouter = require('./routes/login');
-var registerRouter = require('./routes/register');
-var logoutRouter = require('./routes/logout');
+const indexRouter = require('./routes/index');
+const blogRouter = require('./routes/blog');
+const loginRouter = require('./routes/login');
+const registerRouter = require('./routes/register');
+const logoutRouter = require('./routes/logout');
+const accountRouter = require('./routes/account');
 
 //Database setup
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.connect(process.env.ATLAS_DB);
-let mongoDB = mongoose.connection;
+const mongoDB = mongoose.connection;
 mongoDB.on('error', console.error.bind(console, 'Connection Error:'));
 mongoDB.once('open', () => {
   console.log('Connected to MongoDB...');
@@ -45,6 +46,7 @@ app.use('/blog', blogRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/logout', logoutRouter);
+app.use('/account', accountRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

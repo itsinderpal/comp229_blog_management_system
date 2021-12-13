@@ -1,15 +1,30 @@
-let mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-let blogModel = mongoose.Schema(
-	{
-		Title: String,
-		Content: String,
-		Tags: String,
-		Author: String,
-	},
-	{
-		collection: "blogs",
-	}
+const blogModel = mongoose.Schema(
+  {
+    Title: {
+      type: String,
+      default: '',
+    },
+    Content: {
+      type: String,
+      default: '',
+    },
+    Tags: {
+      type: String,
+      default: '',
+    },
+    Author: {
+      type: String,
+      default: '',
+    },
+    Comments: [String],
+  },
+  {
+    collection: 'blogs',
+  }
 );
 
-module.exports = mongoose.model("Blog", blogModel);
+const Blog = mongoose.model('Blog', blogModel);
+
+module.exports = { Blog, blogModel };

@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const passport = require('passport');
 
-let indexController = require('../controllers/index');
+const indexController = require('../controllers/index');
 
 router.get(
   '/',
