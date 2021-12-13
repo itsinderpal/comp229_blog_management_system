@@ -1,14 +1,15 @@
-let Blog = require('../models/blog');
+const ObjectID = require('mongodb').ObjectId;
+let { Blog } = require('../models/blog');
+const { User } = require('../models/user');
 
 module.exports.blogList = function (req, res, next) {
-  console.log(req.user);
-  Blog.find((err, blogList) => {
+  User.findById(req.user._id, (err, loggedUser) => {
     if (err) {
-      return console.error(err);
+      return err;
     } else {
       res.render('index', {
         title: 'Blog Management System',
-        blogs: blogList,
+        blogs: loggedUser.blogs,
         userAuth: req.user,
       });
     }

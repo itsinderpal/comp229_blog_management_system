@@ -1,5 +1,6 @@
 const ObjectID = require('mongodb').ObjectId;
-let Blog = require('../models/blog');
+let { Blog } = require('../models/blog');
+let { User } = require('../models/user');
 
 module.exports.displayAddPage = (req, res, next) => {
   res.render('blog/add_edit', {
@@ -11,7 +12,19 @@ module.exports.displayAddPage = (req, res, next) => {
 
 module.exports.processAddPage = (req, res, next) => {
   const newBlog = new Blog(req.body);
-  Blog.create(newBlog);
+
+  User.findById(req.user._id, (err, usr) => {
+    if (err) {
+      return err;
+    }
+    usr.updateOne(
+      { _id: new ObjectID(usr._id) },
+      { blogs: [...usr.blogs, newBlog] }
+    );
+    console.log(usr);
+  });
+
+  // Blog.create(newBlog);
   res.redirect('/');
 };
 
