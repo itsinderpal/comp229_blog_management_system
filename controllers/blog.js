@@ -1,6 +1,6 @@
 const ObjectID = require('mongodb').ObjectId;
-let { Blog } = require('../models/blog');
-let { User } = require('../models/user');
+const { Blog } = require('../models/blog');
+const { User } = require('../models/user');
 
 module.exports.displayAddPage = (req, res, next) => {
   res.render('blog/add_edit', {

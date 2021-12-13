@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-let registerController = require("../controllers/register");
+const registerController = require("../controllers/register");
 
 router.get("/", registerController.displayRegister);
 

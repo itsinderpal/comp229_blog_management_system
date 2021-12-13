@@ -1,7 +1,7 @@
-let mongoose = require('mongoose');
-const { Blog, blogModel } = require('./blog');
+const mongoose = require('mongoose');
+// const { Blog, blogModel } = require('./blog');
 
-let User = mongoose.Schema(
+const User = mongoose.Schema(
   {
     name: {
       type: String,

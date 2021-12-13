@@ -1,5 +1,3 @@
-const ObjectID = require('mongodb').ObjectId;
-let { Blog } = require('../models/blog');
 const { User } = require('../models/user');
 
 module.exports.blogList = function (req, res, next) {

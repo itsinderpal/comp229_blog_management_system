@@ -1,8 +1,8 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 const passport = require('passport');
 
-let loginController = require("../controllers/login");
+const loginController = require("../controllers/login");
 
 router.get("/", loginController.displayLogin);
 

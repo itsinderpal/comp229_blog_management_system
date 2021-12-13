@@ -1,6 +1,6 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-let blogModel = mongoose.Schema(
+const blogModel = mongoose.Schema(
   {
     Title: {
       type: String,

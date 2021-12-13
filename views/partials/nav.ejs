@@ -1,12 +1,12 @@
-<nav class="flex flex-row justify-evenly items-center">
+<nav class="flex flex-row justify-evenly items-center bg-gray-50 py-2">
     <div>
-        <a href="/"><img src="/images/logo.png" alt="logo" width="100" height="100"></a>
+        <a href="/"><img src="/images/logo.png" class="rounded-full" alt="logo" width="70" height="70"></a>
     </div>
     <div class="space-x-3">
         <a href="/" class="text-xl hover:underline">Home</a>
         <a href="/blog/add" class="text-xl hover:underline">Create Blog</a>
         <% if (userAuth) { %>
-            <a href="/account" class="text-xl hover:underline">Hi, <%= userAuth.username %></a>
+            <a href="/account" class="text-xl hover:underline">Hi, <%= userAuth.name %></a>
             <a href="/logout" class="text-xl underline">Logout</a>
             <% } else { %>
                 <a href="/login" class="text-xl hover:underline">Login</a>
