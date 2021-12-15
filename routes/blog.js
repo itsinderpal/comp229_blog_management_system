@@ -29,7 +29,7 @@ router.post(
 router.get(
   '/delete/:id',
   passport.authenticate('jwt', { session: false, failureRedirect: '/login' }),
-  blogController.processDelete
+  blogController.performDelete
 );
 
 module.exports = router;

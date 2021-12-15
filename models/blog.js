@@ -1,29 +1,27 @@
 const mongoose = require('mongoose');
 
-const blogModel = mongoose.Schema(
-  {
-    Title: {
-      type: String,
-      default: '',
-    },
-    Content: {
-      type: String,
-      default: '',
-    },
-    Tags: {
-      type: String,
-      default: '',
-    },
-    Author: {
-      type: String,
-      default: '',
-    },
-    Comments: [String],
+const blogModel = mongoose.Schema({
+  title: {
+    type: String,
+    default: '',
+    required: true,
   },
-  {
-    collection: 'blogs',
-  }
-);
+  content: {
+    type: String,
+    default: '',
+    required: true,
+  },
+  tags: {
+    type: String,
+    default: '',
+    required: true,
+  },
+  author: {
+    type: String,
+    default: '',
+    required: true,
+  },
+});
 
 const Blog = mongoose.model('Blog', blogModel);
 
