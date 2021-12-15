@@ -3,7 +3,7 @@
 
         <main class="container py-10">
             <div class="row text-center">
-                <h1 class="text-xl font-bold">
+                <h1 class="text-3xl font-bold">
                     <%= title %>
                 </h1>
 
@@ -18,22 +18,22 @@
                         <div class="table-responsive flex justify-center items-center pt-8">
                             <form method="POST" class="form flex flex-col justify-center text-center">
                                 <div class="form-group space-x-2 flex justify-between items-center">
-                                    <input type="hidden" name="id" value="<%= user._id %>">
+                                    <!-- <input type="hidden" name="id" value="<%= user._id %>"> -->
                                     <label for="usernameField">Username</label>
-                                    <input type="text" class="form-control p-1 bg-gray-100 outline-none"
+                                    <input type="text" class="form-control p-2 rounded-lg bg-gray-100 outline-none"
                                         id="usernameField" placeholder="Enter your username" name="username"
                                         value="<%= user.username %>" required>
                                 </div>
                                 <br />
                                 <div class="form-group space-x-2 flex justify-between items-center">
                                     <label for="passwordField">Password</label>
-                                    <input type="password" class="form-control p-1 bg-gray-100 outline-none"
+                                    <input type="password" class="form-control p-2 rounded-lg bg-gray-100 outline-none"
                                         id="passwordField" placeholder="Enter your password" name="password"
                                         value="<%= user.password %>" required>
                                 </div>
                                 <br />
                                 <div class="flex justify-center space-x-4">
-                                    <button class="btn btn-primary p-2 bg-blue-100" type="submit">
+                                    <button class="text-xl border-2 border-blue-100 p-2 bg-blue-100 rounded-lg  hover:text-white" type="submit">
                                         <i class="fas fa-edit"></i>
                                         Login
                                     </button>
