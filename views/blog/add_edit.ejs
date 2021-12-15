@@ -1,40 +1,38 @@
 <%- include ../partials/header.ejs %>
     <%- include ../partials/nav.ejs %>
 
-        <div class="container">
-            <div class="row flex flex-col justify-center items-center text-center py-6">
-                <div class="offset-md-3 col-md-6">
+        <div>
+            <div class="flex flex-col justify-center items-center text-center py-6">
+                <div>
                     <h1 class="text-3xl font-bold p-4">
                         <%= title %>
                     </h1>
 
                     <form method="POST" class="form flex flex-col justify-center text-center">
                         <input type="hidden" name="id" value="<%= blog._id %>">
-                        <div class="form-group space-x-2 flex justify-between items-center">
+                        <div class="space-x-2 flex justify-between items-center">
                             <label for="blogTitleField">Title</label>
-                            <input type="text" class="form-control p-2 rounded-lg bg-gray-100 outline-none"
-                                id="blogTitleField" placeholder="Enter the Title" name="title" value="<%= blog.title %>"
-                                required>
+                            <input type="text" class="p-2 rounded-lg bg-gray-100 outline-none" id="blogTitleField"
+                                placeholder="Enter the Title" name="title" value="<%= blog.title %>" required>
                         </div>
                         <br />
-                        <div class="form-group space-x-2 flex justify-between items-center">
+                        <div class="space-x-2 flex justify-between items-center">
                             <label for="blogContentField">Content</label>
                             <textarea name="content" id="blogContentField" rows="4" cols="23"
-                                class="form-control p-2 rounded-lg bg-gray-100 outline-none"
-                                placeholder="Enter the Content" required><%= blog.content %></textarea>
+                                class="p-2 rounded-lg bg-gray-100 outline-none" placeholder="Enter the Content"
+                                required><%= blog.content %></textarea>
                         </div>
                         <br />
-                        <div class="form-group space-x-2 flex justify-between items-center">
+                        <div class="space-x-2 flex justify-between items-center">
                             <label for="blogTagsField">Tags</label>
-                            <input type="text" class="form-control p-2 rounded-lg bg-gray-100 outline-none"
-                                id="blogTagsField" placeholder="Enter the tags" name="tags" value="<%= blog.tags %>">
+                            <input type="text" class="p-2 rounded-lg bg-gray-100 outline-none" id="blogTagsField"
+                                placeholder="Enter the tags" name="tags" value="<%= blog.tags %>">
                         </div>
                         <br />
-                        <div class="form-group space-x-2 flex justify-between items-center">
+                        <div class="space-x-2 flex justify-between items-center">
                             <label for="blogAuthorField">Author</label>
-                            <input type="text" class="form-control p-2 rounded-lg bg-gray-100 outline-none"
-                                id="blogAuthorField" placeholder="Enter the Author" name="author"
-                                value="<%= blog.author %>" required>
+                            <input type="text" class="p-2 rounded-lg bg-gray-100 outline-none" id="blogAuthorField"
+                                placeholder="Enter the Author" name="author" value="<%= blog.author %>" required>
                         </div>
                         <br />
                         <br />
@@ -42,13 +40,11 @@
                             <button
                                 class="text-xl border-2 border-blue-100 p-2 bg-blue-100 rounded-lg  hover:text-white"
                                 type="submit">
-                                <i class="fas fa-edit"></i>
                                 Submit
                             </button>
 
                             <a href="/"
                                 class="text-xl border-2 border-blue-100 p-2 bg-blue-100 rounded-lg  hover:text-white">
-                                <i class="fas fa-undo"></i>
                                 Cancel
                             </a>
                         </div>

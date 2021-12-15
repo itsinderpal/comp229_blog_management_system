@@ -17,7 +17,6 @@ module.exports.processAddPage = (req, res, next) => {
     tags: req.body.tags,
     author: req.body.author,
   });
-  console.log(newBlog);
 
   const updatedUser = new User({
     _id: req.user._id,
@@ -37,14 +36,12 @@ module.exports.processAddPage = (req, res, next) => {
       },
     ],
   });
-  console.log(updatedUser);
 
   User.updateOne(
     { username: req.user.username },
     { $set: { ...updatedUser } },
     (err, res) => {
       if (err) console.log(err);
-      console.log(res);
     }
   );
 
@@ -101,7 +98,6 @@ module.exports.performDelete = async (req, res, next) => {
 
     usr.save((err, done) => {
       if (err) return err;
-      if (done) console.log('remove success');
       res.redirect('/');
     });
   }).clone();
