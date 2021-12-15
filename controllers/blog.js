@@ -11,64 +11,106 @@ module.exports.displayAddPage = (req, res, next) => {
 };
 
 module.exports.processAddPage = (req, res, next) => {
-  const newBlog = new Blog(req.body);
-
-  User.findById(req.user._id, (err, usr) => {
-    if (err) {
-      return err;
-    }
-    usr.updateOne(
-      { _id: new ObjectID(usr._id) },
-      { blogs: [...usr.blogs, newBlog] }
-    );
-    console.log(usr);
+  const newBlog = new Blog({
+    title: req.body.title,
+    content: req.body.content,
+    tags: req.body.tags,
+    author: req.body.author,
   });
+  console.log(newBlog);
 
-  // Blog.create(newBlog);
-  res.redirect('/');
-};
-
-module.exports.displayEditPage = (req, res, next) => {
-  let id = req.params.id;
-
-  Blog.findById(id, (err, blogEditDisplay) => {
-    if (err) {
-      return console.error(err);
-    } else {
-      res.render('blog/add_edit', {
-        title: 'Edit Blog',
-        blog: blogEditDisplay,
-        userAuth: req.user,
-      });
-    }
+  const updatedUser = new User({
+    _id: req.user._id,
+    name: req.user.name,
+    email: req.user.email,
+    username: req.user.username,
+    password: req.user.password,
+    blogs: req.user.blogs,
+    blogs: [
+      ...req.user.blogs,
+      {
+        _id: newBlog._id,
+        title: newBlog.title,
+        content: newBlog.content,
+        tags: newBlog.tags,
+        author: newBlog.author,
+      },
+    ],
   });
-};
+  console.log(updatedUser);
 
-module.exports.processEditPage = (req, res, next) => {
-  let id = req.params.id;
-
-  const updatedBlog = new Blog({ _id: id, ...req.body });
-  console.log(updatedBlog);
-  Blog.updateOne(
-    { _id: new ObjectID(id) },
-    { $set: { ...updatedBlog } },
+  User.updateOne(
+    { username: req.user.username },
+    { $set: { ...updatedUser } },
     (err, res) => {
-      if (err) {
-        return console.error(err);
-      }
+      if (err) console.log(err);
+      console.log(res);
     }
   );
+
   res.redirect('/');
 };
 
-module.exports.processDelete = (req, res, next) => {
+module.exports.displayEditPage = async (req, res, next) => {
   let id = req.params.id;
 
-  Blog.remove({ _id: ObjectID(id) }, (err) => {
-    if (err) {
-      return console.error(err);
-    } else {
-      res.redirect('/');
-    }
+  const findBlog = await User.findOne({ 'blogs._id': id }, 'blogs.$');
+  if (findBlog) {
+    const blog = findBlog.blogs[0];
+    res.render('blog/add_edit', {
+      title: 'Edit Blog',
+      blog: blog,
+      userAuth: req.user,
+    });
+  }
+};
+
+module.exports.processEditPage = async (req, res, next) => {
+  let id = req.params.id;
+
+  const newBlog = await new Blog({
+    _id: id,
+    title: req.body.title,
+    content: req.body.content,
+    tags: req.body.tags,
+    author: req.body.author,
   });
+
+  await User.findById(req.user._id, (err, usr) => {
+    if (err) return err;
+    const blog = usr.blogs.id(id);
+    blog.set(req.body);
+
+    usr
+      .save()
+      .then(() => {
+        res.redirect('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }).clone();
+};
+
+module.exports.performDelete = async (req, res, next) => {
+  let id = req.params.id;
+
+  await User.findById(req.user._id, (err, usr) => {
+    if (err) return err;
+    usr.blogs.id(id).remove();
+
+    usr.save((err, done) => {
+      if (err) return err;
+      if (done) console.log('remove success');
+      res.redirect('/');
+    });
+  }).clone();
+
+  // Blog.remove({ _id: ObjectID(id) }, (err) => {
+  //   if (err) {
+  //     return console.error(err);
+  //   } else {
+  //     res.redirect('/');
+  //   }
+  // });
 };
