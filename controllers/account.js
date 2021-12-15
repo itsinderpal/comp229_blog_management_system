@@ -1,5 +1,4 @@
 const { User } = require('../models/user');
-const ObjectID = require('mongodb').ObjectId;
 
 module.exports.displayAccount = function (req, res, next) {
   User.findById(req.user._id, (err, loggedUser) => {
@@ -25,11 +24,9 @@ module.exports.editAccount = function (req, res, next) {
     name: name,
     email: email,
   });
-  console.log(updatedUser);
 
   User.updateOne({ username: req.user.username }, { $set: { ...updatedUser } }, (err, res) => {
     if (err) console.log(err);
-    console.log(res);
   });
 
   res.redirect('/');

@@ -1,55 +1,44 @@
 <% include partials/header.ejs %>
   <% include partials/nav.ejs %>
 
-    <main class="container py-10">
-      <div class="row text-center">
-        <h1 class="text-xl font-bold">
+    <main class="py-10">
+      <div class="text-center">
+        <h1 class="text-3xl font-bold">
           <%= title %>
         </h1>
         <br>
         <div>
-          <a href="/blog/add" class="p-2 bg-blue-100 btn btn-primary align-self-end" role="button">
-            <i class="fas fa-plus-circle"></i>
+          <a href="/blog/add" class="text-xl border-2 border-blue-100 p-2 bg-blue-100 rounded-lg  hover:text-white"
+            role="button">
             Add a new Blog
           </a>
         </div>
-
-        <div class="table-responsive flex justify-center items-center pt-8">
-          <table class="table table-bordered table-striped table-hover">
-            <tr>
-              <th class="text-center p-4">Title</th>
-              <th class="text-center p-4">Content</th>
-              <th class="text-center p-4">Tags</th>
-              <th class="text-center p-4">Author</th>
-              <th class="text-center p-4" colspan="4">Actions</th>
-            </tr>
-
-            <% for(let count=0; count < blogs.length; count++) { %>
-              <tr>
-                <td class="text-center">
+        <div class="flex justify-center align-center pt-14 space-x-10 space-y-10 flex-wrap">
+          <% for(let count=0; count < blogs.length; count++) { %>
+            <div
+              class="flex flex-col justify-center align-center bg-gray-50 rounded-lg hover:bg-gray-100 p-6 space-y-6 w-1/4 border-2 border-gray-100 min-h-fit">
+              <div class="space-y-2">
+                <h2 class="text-lg font-bold">
                   <%= blogs[count].title %>
-                </td>
-                <td class="text-center">
+                </h2>
+                <p>
                   <%= blogs[count].content %>
-                </td>
-                <td class="text-center">
+                </p>
+                <p>
                   <%= blogs[count].tags %>
-                </td>
-                <td class="text-center">
+                </p>
+                <p>
                   <%= blogs[count].author %>
-                </td>
-
-                <td class="pl-4 text-center">
-                  <a href="/blog/edit/<%= blogs[count]._id %>" class="btn btn-primary btn-sm">
-                    <i class="fas fa-pencil-alt underline">Edit</i></a>
-                </td>
-                <td class="pl-4 text-center">
-                  <a href="/blog/delete/<%= blogs[count]._id %>" class="btn btn-danger btn-sm">
-                    <i class="fas fa-trash-alt underline">Delete</i></a>
-                </td>
-              </tr>
-              <% } %>
-          </table>
+                    </>
+              </div>
+              <div class="flex justify-between">
+                <a href="/blog/edit/<%= blogs[count]._id %>"
+                  class="cursor-pointer p-2 rounded-lg bg-gray-200 hover:bg-blue-100">EDIT</a>
+                <a href="/blog/delete/<%= blogs[count]._id %>"
+                  class="cursor-pointer p-2 rounded-lg bg-gray-200 hover:bg-blue-100">DELETE</a>
+              </div>
+            </div>
+            <% } %>
         </div>
       </div>
     </main>
