@@ -9,6 +9,7 @@ module.exports.displayUserBlogs = function (req, res, next) {
         title: `${loggedUser.name}\'s Blogs`,
         blogs: loggedUser.blogs,
         userAuth: req.user,
+        index: false,
       });
     }
   });
