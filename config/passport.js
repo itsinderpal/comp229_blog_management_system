@@ -31,3 +31,4 @@ const jwtStrategy = new JWTStrategy(
 );
 
 passport.use(jwtStrategy);
+module.exports = {cookieExtractor};
