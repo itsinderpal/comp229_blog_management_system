@@ -16,6 +16,7 @@ app.use(cors());
 // routes
 const indexRouter = require('./routes/index');
 const blogRouter = require('./routes/blog');
+const myBlogsRouter = require('./routes/my-blogs');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
 const logoutRouter = require('./routes/logout');
@@ -43,6 +44,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/', indexRouter);
 app.use('/blog', blogRouter);
+app.use('/my-blogs', myBlogsRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/logout', logoutRouter);

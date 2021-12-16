@@ -5,13 +5,18 @@
     <div class="space-x-3">
         <a href="/" class="text-xl hover:text-blue-300">Home</a>
         <a href="/blog/add" class="text-xl hover:text-blue-300">Create Blog</a>
-        <% if (userAuth) { %>
-            <a href="/account" class="text-xl hover:text-blue-300">Hi, <%= userAuth.name %></a>
+        <% if (userAuth || user) { %>
+            <a href="/my-blogs" class="text-xl hover:text-blue-300">My Blogs</a>
+            <a href="/account" class="text-xl hover:text-blue-300">Hi,
+                <%= userAuth ? userAuth.name : user.name %>
+            </a>
             <a href="/logout"
                 class="text-xl border-2 border-blue-100 p-2 bg-blue-100 rounded-lg hover:text-white">Logout</a>
             <% } else { %>
-                <a href="/login" class="text-xl border-2 border-blue-100 p-2 bg-blue-100 rounded-lg  hover:text-white">Login</a>
-                <a href="/register" class="text-xl border-2 border-blue-100 p-2 bg-blue-100 rounded-lg  hover:text-white">Register</a>
+                <a href="/login"
+                    class="text-xl border-2 border-blue-100 p-2 bg-blue-100 rounded-lg  hover:text-white">Login</a>
+                <a href="/register"
+                    class="text-xl border-2 border-blue-100 p-2 bg-blue-100 rounded-lg  hover:text-white">Register</a>
                 <% } %>
     </div>
 </nav>

@@ -7,39 +7,46 @@
           <%= title %>
         </h1>
         <br>
-        <div>
-          <a href="/blog/add" class="text-xl border-2 border-blue-100 p-2 bg-blue-100 rounded-lg  hover:text-white"
-            role="button">
-            Add a new Blog
-          </a>
-        </div>
-        <div class="flex justify-center align-center pt-14 space-x-10 space-y-10 flex-wrap">
-          <% for(let count=0; count < blogs.length; count++) { %>
-            <div
-              class="flex flex-col justify-center align-center bg-gray-50 rounded-lg hover:bg-gray-100 p-6 space-y-6 w-1/4 border-2 border-gray-100 min-h-fit">
-              <div class="space-y-2">
-                <h2 class="text-lg font-bold">
-                  <%= blogs[count].title %>
-                </h2>
-                <p>
-                  <%= blogs[count].content %>
-                </p>
-                <p>
-                  <%= blogs[count].tags %>
-                </p>
-                <p>
-                  <%= blogs[count].author %>
-                    </>
+        <% if (blogs.length !==0) { %>
+          <div>
+            <a href="/blog/add" class="text-xl border-2 border-blue-100 p-2 bg-blue-100 rounded-lg  hover:text-white"
+              role="button">
+              Add a new Blog
+            </a>
+          </div>
+          <div class="flex justify-center align-center pt-14 space-x-10 space-y-10 flex-wrap">
+            <% for(let count=0; count < blogs.length; count++) { %>
+              <div
+                class="flex flex-col justify-center align-center bg-gray-50 rounded-lg hover:bg-gray-100 p-6 space-y-6 w-1/4 border-2 border-gray-100 min-h-fit">
+                <div class="space-y-2">
+                  <h2 class="text-lg font-bold">
+                    <%= blogs[count].title %>
+                  </h2>
+                  <p>
+                    <%= blogs[count].content %>
+                  </p>
+                  <p>
+                    <%= blogs[count].tags %>
+                  </p>
+                  <p>
+                    <%= blogs[count].author %>
+                      </>
+                </div>
+                <div class="flex justify-between">
+                  <a href="/blog/edit/<%= blogs[count]._id %>"
+                    class="cursor-pointer p-2 rounded-lg bg-gray-200 hover:bg-blue-100">EDIT</a>
+                  <a href="/blog/delete/<%= blogs[count]._id %>"
+                    class="cursor-pointer p-2 rounded-lg bg-gray-200 hover:bg-blue-100">DELETE</a>
+                </div>
               </div>
-              <div class="flex justify-between">
-                <a href="/blog/edit/<%= blogs[count]._id %>"
-                  class="cursor-pointer p-2 rounded-lg bg-gray-200 hover:bg-blue-100">EDIT</a>
-                <a href="/blog/delete/<%= blogs[count]._id %>"
-                  class="cursor-pointer p-2 rounded-lg bg-gray-200 hover:bg-blue-100">DELETE</a>
-              </div>
+              <% } %>
+          </div>
+          <% } else if (blogs.length===0) { %>
+            <div class="flex justify-center align-center pt-14 space-x-10 space-y-10 flex-wrap">
+              <h2 class="text-xl font-medium">There's no blogs here yet. <a href="/blog/add" class="underline">Create
+                  One instead?</a></h2>
             </div>
             <% } %>
-        </div>
       </div>
     </main>
 
