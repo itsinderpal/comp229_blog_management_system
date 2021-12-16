@@ -66,6 +66,7 @@ module.exports.blogList = async function (req, res, next) {
     // if (authorizedUser.verified) {
     res.render('index', {
       title: 'Blog Management System',
+      index: true,
       blogs: blogsSorted,
       userAuth: req.user,
       user: authorizedUser.usrData,
